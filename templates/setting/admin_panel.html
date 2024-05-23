@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} | Learning management system{% endblock title %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Главная страница</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Панель администратора</li>
+    </ol>
+</nav>  
+
+<div class="title-1"><i class="fas fa-user-tie"></i>Панель администратора</div>
+<br>
+<br>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i>{{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i>{{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="border-bottom">
+                Управлять<a class="link" href="{% url 'lecturer_list' %}"> Преподаватели &raquo;</a>
+                <p class="text-muted">CRUD (Создавать, извлекать, обновлять &amp; Удалить) преподаватели</p>
+            </div>
+
+            <div class="border-bottom mt-3">
+            Управлять<a class="link" href="{% url 'student_list' %}"> Студент &raquo;</a>
+            <p class="text-muted">CRUD (Создавать, извлекать, обновлять &amp; Удалить) студенты</p>
+            </div>
+
+            <div class="border-bottom mt-3">
+            Управлять<a class="link" href="{% url 'session_list' %}"> Сессия &raquo;</a>
+            <p class="text-muted">CRUD (Создавать, извлекать, обновлять и удалять) сессий</p>
+            </div>
+
+            <div class="mt-3">
+            Управлять<a class="link" href="{% url 'semester_list' %}"> Семестр &raquo;</a>
+            <p class="text-muted">CRUD (Создавать, извлекать, обновлять и удалять) семестры</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="border-bottom">
+                Добавление курса
+                <label class="switch switch-text switch-success switch-pill" style="float: right;">
+                <input type="checkbox" class="switch-input" checked="true">
+                <span data-on="On" data-off="Off" class="switch-label"></span>
+                <span class="switch-handle"></span>
+                </label>
+                <p class="text-muted">Переключатель
+                    <i class="info-text py-0 px-2 bg-success text-light">ON</i> or <i class="info-text py-0 px-2 bg-danger text-light">OFF</i>
+                </p>
+            </div>
+
+            <div class="border-bottom mt-3">
+                Управлять<a class="link" href="{% url 'programs' %}"> Программы &amp; Курсы &raquo;</a>
+            <p class="text-muted">CRUD (Создавать, извлекать, обновлять и удалять) programs</p>
+            </div>
+
+            <div class="border-bottom mt-3">
+            Управлять<a class="link" href="{% url 'course_allocation_view' %}"> Распределение курсов &raquo;</a>
+            <p class="text-muted">CRUD (Создавать, извлекать, обновлять и удалять) распределение курсов</p>
+            </div>
+
+            <div class="mt-3">
+            Управлять<a class="link" href="{% url 'home' %}"> Новости и события &raquo;</a>
+            <p class="text-muted">CRUD (Создавать, извлекать, обновлять и удалять) Новости и события</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
